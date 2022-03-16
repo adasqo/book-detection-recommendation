@@ -1,0 +1,39 @@
+---
+swagger: "2.0"
+info:
+  description: "Book recommendations service"
+  version: "1.0.0"
+  title: "Book recommendations service"
+basePath: "/"
+tags:
+- name: "recommendations"
+schemes:
+- "https"
+- "http"
+paths:
+  /recommendations:
+    post:
+      tags:
+      - "recommendations"
+      summary: "Send image and receive recommendations"
+      operationId: "get_recommendations"
+      consumes:
+        - multipart/form-data
+      produces:
+          - application/json
+      parameters: 
+      - in: "formData"
+        name: "image"
+        type: "file"
+        required: true
+        
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        "400":
+          description: "Something went wrong"
+      x-swagger-router-controller: "src.api.controllers.recommendations_controller"
