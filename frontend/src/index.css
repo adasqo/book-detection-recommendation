@@ -1,0 +1,184 @@
+
+html, body, #root, .App {
+  height: 100%;
+  margin: 0px; 
+  padding: 0px; 
+  background-color: #cfe3ee;
+  /* overflow: hidden; */
+}
+.header {
+  background-color: #87bdd8;
+  height: 10%;
+}
+.headerTitle {
+  font-size: 1.5rem;
+  color: #fff;
+  left: 5%;
+  top: 2%;
+  position: absolute;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.homeElementsLayout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.mainLayout {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+.browserWrapper {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 70%;
+  background-color: rgba(150,170,180,0.5);
+  height: 50rem;
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: scroll;
+}
+.browserUpload {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.uploadMethodChoice {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  font-size: 1.5rem;
+}
+.takePhotoButton {
+  padding: 6px 23px;
+  background: #3f4257;
+  border-radius: 30px;
+  color: white;
+  font-weight: 300;
+  font-size: 14px;
+  margin: 10px 0;
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+.takePhotoText {
+  position: relative;
+  top: 1.5rem;
+  margin-bottom: 2rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: white;
+  font-size: 1.5rem;
+}
+.imageUploadDiv {
+  width: 12rem;
+  height: 10rem;
+}
+.fileContainer {
+  background: #fff;
+  box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 5%);
+  position: relative;
+  border-radius: 10px;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px auto;
+  transition: all 0.3s ease-in;
+}
+.photoLogo {
+  height: 4rem;
+}
+.webcamView {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: rgb(24, 24, 24);
+}
+.webcamCapture {
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  top: 15%;
+  left: 0%;
+}
+.webcamBack {
+  position: absolute;
+  bottom: 10%;
+  right: 50%;
+  transform: scale(2) rotate(90deg);  
+  color: #fff;
+}
+.imagePlaceholder {
+  position: relative;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 45%;
+  background-color: azure;
+}
+.resultImage {
+  width: 100%;
+  height: 17rem;
+}
+.resultImageBrowser {
+  width: 100%;
+  height: 100%;
+}
+.resultsList {
+  position: relative;
+  left: 2%;
+  top: 0%;
+  width: 96%;
+  height: auto;
+  justify-content: center; 
+  overflow:scroll;
+}
+.resultElement {
+  width: 100%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: rgb(148, 195, 214);
+  color: white;
+  font-size: 0.9rem;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  overflow:scroll;
+}
+.shadow { 
+  box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
+}
+.resultDetailsRowSmall {
+  display: flex;
+  width: 100%;
+}
+.resultDetailsRowBig {
+  display: flex;
+  width: 100%;
+}
+.resultDetail {
+  margin: 0.5rem;
+}
+.title {
+  flex: 2;
+}
+.author {
+  flex: 2;
+}
+.rating {
+  flex: 1;
+}
+.description {
+  flex: 1;
+  margin-bottom: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
