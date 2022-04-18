@@ -1,13 +1,12 @@
-import torch
-import ssl
 from src.main.objects.point import Point
 from src.main.objects.rectangle import Rectangle
-ssl._create_default_https_context = ssl._create_unverified_context
+from src.main.models_utils.detection_model import BooksDetectionModel
+
 
 class BooksCandidatesDetector:
 
     def __init__(self) -> None:
-        self.model = torch.hub.load('ultralytics/yolov5', 'yolov5l')
+        self.model = BooksDetectionModel.get_model()
 
     def detect_books_candidates(self, image_path: str):
         

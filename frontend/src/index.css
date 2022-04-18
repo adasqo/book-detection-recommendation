@@ -3,11 +3,11 @@ html, body, #root, .App {
   height: 100%;
   margin: 0px; 
   padding: 0px; 
-  background-color: #cfe3ee;
-  /* overflow: hidden; */
+  background-color: #fff;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .header {
-  background-color: #87bdd8;
+  background-color: #5585b5;
   height: 10%;
 }
 .headerTitle {
@@ -16,13 +16,14 @@ html, body, #root, .App {
   left: 5%;
   top: 2%;
   position: absolute;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-.homeElementsLayout {
+.mobileLayout {
+  color: #000;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  background-color: rgba(220, 227, 232, 0.5);
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 .mainLayout {
   margin: 0;
@@ -30,30 +31,33 @@ html, body, #root, .App {
   height: 100%;
 }
 .browserWrapper {
-  margin-top: 2rem;
+  margin-top: 3rem;
   margin-bottom: 2rem;
   width: 70%;
-  background-color: rgba(150,170,180,0.5);
+  background-color: rgba(220, 227, 232, 0.5);
   height: 50rem;
-  border-radius: 1rem;
+  border-radius: 0.2rem;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow: scroll;
 }
+@media only screen and (min-width: 600px) {
+  .browserWrapper {
+    width: 600px;
+  }
+}
 .browserUpload {
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 .uploadMethodChoice {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: white;
-  font-size: 1.5rem;
+  position: relative;
+  font-size: 1.2rem;
+  top: 2rem;
 }
 .takePhotoButton {
   padding: 6px 23px;
@@ -72,7 +76,6 @@ html, body, #root, .App {
   position: relative;
   top: 1.5rem;
   margin-bottom: 2rem;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
   font-size: 1.5rem;
 }
@@ -81,7 +84,6 @@ html, body, #root, .App {
   height: 10rem;
 }
 .fileContainer {
-  background: #fff;
   box-shadow: 2px 2px 3px 0 rgb(0 0 0 / 5%);
   position: relative;
   border-radius: 10px;
@@ -90,8 +92,8 @@ html, body, #root, .App {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin: 10px auto;
-  transition: all 0.3s ease-in;
+  top: 2rem;
+  width: 200px;
 }
 .photoLogo {
   height: 4rem;
@@ -123,7 +125,6 @@ html, body, #root, .App {
   top: 0%;
   width: 100%;
   height: 45%;
-  background-color: azure;
 }
 .resultImage {
   width: 100%;
@@ -135,23 +136,30 @@ html, body, #root, .App {
 }
 .resultsList {
   position: relative;
-  left: 2%;
-  top: 0%;
-  width: 96%;
+  left: 1%;
+  width: 98%;
   height: auto;
   justify-content: center; 
   overflow:scroll;
 }
 .resultElement {
   width: 100%;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
-  background-color: rgb(148, 195, 214);
+  margin-top: 0.2rem;
+  border-radius: 0.2rem;
+  background-color: #5585b5;
   color: white;
-  font-size: 0.9rem;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 0.8rem;
+  
   overflow:scroll;
+}
+.resultElementChoosen {
+  width: 100%;
+  margin-top: 0.2rem;
+  border-radius: 0.3rem;
+  color: white;
+  font-size: 0.8rem;
+  overflow:scroll;
+  background-color: rgb(73, 137, 250)
 }
 .shadow { 
   box-shadow: 0 7px 30px -10px rgba(150,170,180,0.5);
@@ -165,7 +173,7 @@ html, body, #root, .App {
   width: 100%;
 }
 .resultDetail {
-  margin: 0.5rem;
+  margin: 0.4rem;
 }
 .title {
   flex: 2;
@@ -178,7 +186,72 @@ html, body, #root, .App {
 }
 .description {
   flex: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
+
+.loaderWrapper {
+  margin-left: calc(50% - 40px);
+  margin-top: 20%;
+}
+.loader {
+  border: 10px solid rgba(171, 176, 180, 0.5);
+  border-top: 10px solid #5585b5;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+.badRequest {
+  font-size: 1.5rem;
+  color: #000;
+  margin-top: 20%;
+}
+.searchWrapper {
+  position: relative;
+  margin: 0.4rem;
+  width: 98%;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  display: flex;
+}
+.search {
+  border: none;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  width: 100%;
+}
+.loupe {
+  margin-left: 1rem;
+}
+
+.serviceDropdownWrapper {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.serviceDropdownWrapperMobile {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.serviceDropdown {
+  border-radius: 1rem;
+  border-color: #fff;
+  width: 15rem;
+  height: 2rem;
+  font-size: 1rem;
+  padding-left: 1rem;
+  margin-top: -1rem;
 }

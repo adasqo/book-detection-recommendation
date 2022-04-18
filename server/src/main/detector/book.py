@@ -1,11 +1,24 @@
+from time import time
 from typing import Dict, List
 import ssl
-from src.main.objects.book import Book
+import logging
+
+from requests import Session
+from src.main.webscrapper.html_parser.strategies.ref_by_tag import RefByTagStrategy
+from src.main.builder.books_async import BooksBuilderAsync
+# from src.main.builder.books import BooksBuilder
+# from src.main.objects.book import Book
 from src.main.objects.text import Text
 from src.main.objects.rectangle import Rectangle
 ssl._create_default_https_context = ssl._create_unverified_context
+import asyncio
 
 class BooksDetector:
+
+    logger = logging.getLogger()
+
+    def __init__(self, lang: str) -> None:
+        self.lang = lang
 
     def detect_books(self, books_candidates: List[Rectangle], texts_response: List[Text]):
         
@@ -48,18 +61,9 @@ class BooksDetector:
         return True
 
     def create_book_list(self, books_dict: dict):
-
-        books = []
-        for item in books_dict.values():
-            try:
-                books.append(
-                    Book.build(
-                        book_name=" ".join(item["texts"]),
-                        rectangle=item["rectangle"])
-                    )
-            except Exception as err:
-                print(" ".join(item["texts"]), err)
-                pass
-        return books
-
-
+        return BooksBuilderAsync(
+            parser_strategy=[
+                RefByTagStrategy("href"),
+                RefByTagStrategy("data-lpage")],
+            lang=self.lang
+        ).build_books(books_dict)

@@ -5,13 +5,17 @@ import UploadComponent from "./UploadComponent"
 import photoLogo from "../assets/photo_logo.png"
 import { useNavigate } from "react-router-dom";
 import Header from './Header';
+import ServiceDropdown from "./ServiceDropdown";
+import { useState } from "react";
 
 function Home() {
 
     let navigate = useNavigate();
 
+    const [lang, setLang] = useState("pl");
+
     const navigateCamera = () => {
-        navigate(`camera`);
+        navigate(`camera`, {lang: lang});
     };
 
     return (
@@ -21,13 +25,17 @@ function Home() {
                 <BrowserView>
                     <div className="browserWrapper shadow">
                         <div className="browserUpload">
-                            <UploadComponent className="shadow"/>
+                            <UploadComponent className="shadow" lang={lang}/>
+                        </div>
+                        <div className="serviceDropdownWrapper">
+                            <ServiceDropdown setLang={setLang}/> 
                         </div>
                     </div>
+                        
                 </BrowserView>
 
                 <MobileView>
-                    <div className="homeElementsLayout">
+                    <div className="mobileLayout">
                         <div className="fileContainer">
                             <img src={photoLogo} className="photoLogo"/>
                             <button className="takePhotoButton" onClick={navigateCamera}>
@@ -35,10 +43,13 @@ function Home() {
                             </button>
                         </div>
                         <p className="uploadMethodChoice">or</p>
-                        <UploadComponent/>
+                        <UploadComponent lang={lang}/>
+                        <div className="serviceDropdownWrapperMobile">
+                            <ServiceDropdown setLang={setLang}/> 
+                        </div>
                     </div>
                 </MobileView>
-            </div>           
+            </div>    
         </div>
     )
 }

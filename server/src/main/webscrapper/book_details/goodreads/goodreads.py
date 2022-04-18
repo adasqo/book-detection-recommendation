@@ -2,10 +2,10 @@ from src.main.webscrapper.book_details.base import BookDetails
 from src.main.webscrapper.book_details.details_objects.base import DetailsObject
 from src.main.webscrapper.book_details.details_objects.object_types import DetailsObjectTypes
 from src.main.webscrapper.html_parser.strategies.value_by_selector import ValueBySelectorStrategy
-import src.main.webscrapper.lubimyczytac.properties as properties
+import src.main.webscrapper.book_details.goodreads.properties as properties
 from bs4 import BeautifulSoup
 
-class LubimyCzytacBookDetails(BookDetails):
+class GoodReadsBookDetails(BookDetails):
 
     def __init__(self, parser: BeautifulSoup) -> None:
         super().__init__(

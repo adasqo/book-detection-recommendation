@@ -4,12 +4,12 @@ info:
   description: "Book recommendations service"
   version: "1.0.0"
   title: "Book recommendations service"
-basePath: "/"
 tags:
 - name: "recommendations"
 schemes:
 - "https"
 - "http"
+basePath: /api/v1/
 paths:
   /recommendations:
     post:
@@ -18,13 +18,19 @@ paths:
       summary: "Send image and receive recommendations"
       operationId: "get_recommendations"
       consumes:
-        - multipart/form-data
+        - application/json
       produces:
           - application/json
       parameters: 
-      - in: "formData"
-        name: "image"
-        type: "file"
+      - in: body
+        schema:
+            type: object
+            properties:
+              id:
+                type: string
+              image:
+                type: string
+        name: "body"
         required: true
         
       responses:
@@ -37,3 +43,39 @@ paths:
         "400":
           description: "Something went wrong"
       x-swagger-router-controller: "src.api.controllers.recommendations_controller"
+      
+  /book:
+    post:
+      tags:
+      - "book"
+      summary: "Detect book on image"
+      operationId: "detect_book"
+      consumes:
+        - application/json
+      produces:
+          - application/json
+      parameters: 
+      - in: body
+        schema:
+            type: object
+            properties:
+              id:
+                type: string
+              image:
+                type: string
+              book_id:
+                type: string
+        name: "body"
+        required: true
+        
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              type: "string"
+        "400":
+          description: "Something went wrong"
+      x-swagger-router-controller: "src.api.controllers.detect_book_controller"
+      
