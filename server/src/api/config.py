@@ -31,7 +31,7 @@ class ComponentConfig:
             self.address = os.getenv("DATABASE_ADDRESS")
             self.port = os.getenv("DATABASE_PORT")
             self.user = os.getenv("DATABASE_USER")
-            self.password = os.getenv("DATABASE_PASSWROD")
+            self.password = os.getenv("DATABASE_PASSWORD")
             # os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = get_project_root() + '/' + os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
                 
         except Exception as exc:
