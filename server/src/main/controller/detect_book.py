@@ -61,5 +61,5 @@ class DetectBookController:
         y1 = book_coordinates["y1"]
         x2 = book_coordinates["x2"]
         y2 = book_coordinates["y2"]
-        cv2.rectangle(image, (x1, y1), (x2, y2), (250, 137, 73), 7)
+        cv2.rectangle(image, (x1, y1), (x2, y2), (250, 137, 73), 11)
         return image

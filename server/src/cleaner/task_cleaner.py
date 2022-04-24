@@ -22,22 +22,22 @@ class TaskCleaner(Thread):
     def run(self):
         while self.processing:
             try:
+                sleep(self.heartbeat)
                 tasks = self.client.get_all_tasks()
-                if tasks is None:
-                    sleep(self.heartbeat)
+                    
                 for i in range(len(tasks)):
                     task_id, task = tasks[i]["_id"], tasks[i]["_source"]
                     last_heartbeat_tick = (datetime.now() - datetime.strptime(task["lastUpdateDate"], self.time_format)).total_seconds()
                     if last_heartbeat_tick > self.heartbeat :
                         try:
                             self.client.delete_task(task_id)
-                            self.cleanup(f"./server/images/{task_id}.jpg")
+                            self.cleanup(f"./images/{task_id}.jpg")
                             self._logger.info(f"Deleted task: {task_id}.")
                         except:
                             pass
             except Exception as exc:
                 self._logger.warning(f'Unknown task heartbeat error: {exc}')
-            sleep(self.heartbeat)
+
         self.client.close()
 
     def cleanup(self, image_path: str):
