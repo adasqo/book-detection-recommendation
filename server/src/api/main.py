@@ -17,6 +17,7 @@ def start_api():
     app.app.json_encoder = encoder.JSONEncoder  
     app.add_api("swagger.yaml")
     
+    sleep(20)
     BooksDetectionModel.initiate_detection_model()
     TaskCleaner(ElasticsearchClient()).start()
 
