@@ -8,39 +8,39 @@ services:
       context: ./server
     ports:
       - $API_PORT:$API_PORT
-    volumes: 
+    volumes:
       - ./build:/build:ro
       - ./yolov5l.pt:/./yolov5l.pt
     depends_on:
       - elasticsearch
-    networks:
-      - net
 
     environment:
       - API_PORT=$API_PORT
       - DATABASE_SCHEME=$DATABASE_SCHEME
       - DATABASE_ADDRESS=$DATABASE_ADDRESS
-      - DATABASE_PORT=$DATABASE_PORT    
+      - DATABASE_PORT=$DATABASE_PORT
       - DATABASE_USER=$DATABASE_USER
-      - DATABASE_PASSWROD=$DATABASE_PASSWROD
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
       - GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
-
+    networks:
+      - net
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.11.0
-    user: root
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.2
     restart: always
     environment:
       - xpack.security.enabled=false
-      - "discovery.type=single-node"
-      - TAKE_FILE_OWNERSHIP=true
-      - ELASTIC_USERNAME=$DATABASE_USER
+      - discovery.type=single-node
       - ELASTIC_PASSWORD=$DATABASE_PASSWORD
+      - ELASTIC_USERNAME=$DATABASE_USER
     volumes:
       - ./esdata:/usr/share/elasticsearch/data
     ports:
-      - $DATABASE_PORT:$DATABASE_PORT
+      - 9200:9200
+      - 9300:9300
     command: ["elasticsearch", "-Elogger.level=WARN"]
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cat/nodes?v\\&pretty || exit 1" ]
     networks:
       - net
 
@@ -55,7 +55,6 @@ services:
       - backend
     networks:
       - net
-
 volumes:
   esdata:
 
