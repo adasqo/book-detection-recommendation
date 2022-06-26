@@ -1,7 +1,6 @@
 .DS_Store
 node_modules
 .venv
-.env
 resources
 __pycache__
 yolov5l.pt
